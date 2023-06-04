@@ -5,8 +5,9 @@ let userName=''
 let userNameShow = document.querySelector('.user-name');
 let memoBox = document.querySelector('.memo-box')
 let memoList = [];
-let setArray ;
-let getArray = [];
+let setArray  ;
+let getArray;
+
 
 // Add username and save it to local storage
 userName = localStorage.getItem('userName');
@@ -37,21 +38,26 @@ function submitYourMemo() {
   memoList.push(formDataObj)
   memoBox.classList.toggle('d-none')
  
-    setArray =  localStorage.setItem('memoBox',JSON.stringify(memoList));
+     localStorage.setItem('memoBox',JSON.stringify(memoList));
    
-        console.log(getArray)
+        // console.log(getArray)
         showCards()
         // title = '';
         // description = '';
 }
 
 // ShowCards 
-showCards()
 
+showCards()
 
 // show card and show in HTML
 function showCards(){
-    getArray = JSON.parse(localStorage.getItem('memoBox'));
+   
+     getArray = JSON.parse(localStorage.getItem('memoBox'));
+     if(getArray == undefined || getArray == null){
+        getArray = []
+    }
+    console.log(getArray)
     cards.innerHTML = '';
     memoList = getArray;
     memoList.forEach((value , index)=>{
@@ -79,3 +85,5 @@ function deleteEntry(index){
 //   title = '';
 //     description = '';
 }
+
+
